@@ -19,8 +19,8 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (isInRange) {
         vscode.commands.executeCommand("revealLine", {
-          lineNumber: lineNumber - 5,
-          at: "top",
+          lineNumber,
+          at: "center",
         });
       } else {
         vscode.commands.executeCommand("cursorMove", {
