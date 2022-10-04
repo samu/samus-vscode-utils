@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
 
+const lines = 15;
+
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
     "cursor-placement.move",
@@ -19,12 +21,13 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (isInRange) {
         vscode.commands.executeCommand("revealLine", {
-          lineNumber,
-          at: "center",
+          lineNumber: lineNumber - lines,
+          at: "top",
         });
       } else {
         vscode.commands.executeCommand("cursorMove", {
-          to: "viewPortCenter",
+          to: "viewPortTop",
+          value: lines + 1,
         });
       }
     }
