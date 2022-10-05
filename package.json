@@ -27,6 +27,10 @@
         "title": "Pull cursor up"
       },
       {
+        "command": "cursor-placement.pull-down",
+        "title": "Pull cursor down"
+      },
+      {
         "command": "cursor-placement.move-up-and-scroll",
         "title": "Move up and scroll"
       },

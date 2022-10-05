@@ -53,6 +53,24 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
+      "cursor-placement.pull-down",
+      ({ value }: { value: number }) => {
+        const lineNumber = vscode.window.activeTextEditor?.selection.end.line;
+
+        if (!lineNumber) {
+          return;
+        }
+
+        vscode.commands.executeCommand("revealLine", {
+          lineNumber: lineNumber + value,
+          at: "bottom",
+        });
+      }
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
       "cursor-placement.move-down-and-scroll",
       ({ value }: { value: number }) => {
         vscode.commands.executeCommand("cursorMove", {
