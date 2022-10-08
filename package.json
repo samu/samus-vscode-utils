@@ -14,7 +14,8 @@
     "onCommand:cursor-placement.pull-up",
     "onCommand:cursor-placement.pull-down",
     "onCommand:cursor-placement.move-up-and-scroll",
-    "onCommand:cursor-placement.move-down-and-scroll"
+    "onCommand:cursor-placement.move-down-and-scroll",
+    "onCommand:cursor-placement.escape-cursorMove"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -38,6 +39,10 @@
       {
         "command": "cursor-placement.move-down-and-scroll",
         "title": "Move down and scroll"
+      },
+      {
+        "command": "cursor-placement.escape-cursorMove",
+        "title": "Move cursor"
       }
     ]
   },

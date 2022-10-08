@@ -106,6 +106,40 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.escape-cursorMove",
+      ({ value }: { value: number }) => {
+        const editor = vscode.window.activeTextEditor;
+
+        if (!editor) {
+          return;
+        }
+
+        const [range] = editor.visibleRanges;
+
+        const targetLine = range.start.line + value;
+
+        vscode.commands.executeCommand("extension.vim_escape");
+
+        setTimeout(() => {
+          vscode.commands.executeCommand("revealLine", {
+            lineNumber: targetLine - value,
+            at: "top",
+          });
+
+          setTimeout(() => {
+            vscode.commands.executeCommand("cursorMove", {
+              to: "viewPortTop",
+              by: "line",
+              value,
+            });
+          }, 100);
+        }, 0);
+      }
+    )
+  );
 }
 
 export function deactivate() {}
