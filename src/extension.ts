@@ -140,6 +140,75 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.move-selection-to-occurence",
+      ({ value }: { value: number }) => {
+        const editor = vscode.window.activeTextEditor;
+
+        if (!editor) {
+          return;
+        }
+
+        const [range] = editor.visibleRanges;
+
+        const selection = editor.selection;
+        const query = editor.document.getText(selection);
+
+        let targetLine: number | null = null;
+
+        for (let i = range.start.line; i < range.end.line; i++) {
+          if (editor.document.lineAt(i).text.includes(query)) {
+            targetLine = i;
+            break;
+          }
+        }
+
+        if (targetLine === null) {
+          // No line found with a match - we simply drop the cursor and escape
+          // vim to normal mode.
+
+          targetLine = range.start.line + value;
+          const lineContent = editor.document.lineAt(
+            Math.min(targetLine, editor.document.lineCount - 1)
+          ).text;
+
+          const targetChar = lineContent
+            .split("")
+            .findIndex((char) => char !== " ");
+
+          editor.selection = new vscode.Selection(
+            targetLine,
+            targetChar,
+            targetLine,
+            targetChar
+          );
+
+          setTimeout(() => {
+            vscode.commands.executeCommand("extension.vim_escape");
+          }, 100);
+
+          return;
+        } else {
+          // drop the cursor on the next best match
+
+          const startChar = editor.document
+            .lineAt(targetLine)
+            .text.indexOf(query);
+
+          const endChar = startChar + query.length;
+
+          editor.selection = new vscode.Selection(
+            targetLine,
+            startChar,
+            targetLine,
+            endChar
+          );
+        }
+      }
+    )
+  );
 }
 
 export function deactivate() {}
