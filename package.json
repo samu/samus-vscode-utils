@@ -10,13 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:cursor-placement.smart-move",
-    "onCommand:cursor-placement.pull-up",
-    "onCommand:cursor-placement.pull-down",
-    "onCommand:cursor-placement.move-up-and-scroll",
-    "onCommand:cursor-placement.move-down-and-scroll",
-    "onCommand:cursor-placement.escape-cursorMove",
-    "onCommand:cursor-placement.move-selection-to-occurence"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {

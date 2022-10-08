@@ -1,6 +1,39 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
+  const selectionDecorationType = vscode.window.createTextEditorDecorationType({
+    outline: "3px solid rgba(211, 54, 130, 0.5)",
+  });
+
+  vscode.window.onDidChangeTextEditorSelection(
+    (event) => {
+      const editor = vscode.window.activeTextEditor;
+
+      if (!editor) {
+        return;
+      }
+
+      const decorations =
+        event.selections.length === 1
+          ? []
+          : event.selections.map((selection) => ({
+              range: new vscode.Range(
+                selection.start,
+                new vscode.Position(
+                  selection.end.line,
+                  selection.start.character === selection.end.character
+                    ? selection.end.character + 1
+                    : selection.end.character
+                )
+              ),
+            }));
+
+      editor.setDecorations(selectionDecorationType, decorations);
+    },
+    null,
+    context.subscriptions
+  );
+
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "cursor-placement.smart-move",
