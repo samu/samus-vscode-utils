@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
   const selectionDecorationType = vscode.window.createTextEditorDecorationType({
-    outline: "3px solid rgba(211, 54, 130, 0.5)",
+    outline: "2px solid rgba(211, 54, 130, 0.5)",
   });
 
   vscode.window.onDidChangeTextEditorSelection(
