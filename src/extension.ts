@@ -265,6 +265,19 @@ export function activate(context: vscode.ExtensionContext) {
       );
     })
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.open-result-and-reset",
+      () => {
+        vscode.commands.executeCommand("search.action.openResult");
+        vscode.commands.executeCommand("workbench.view.explorer");
+        vscode.commands.executeCommand(
+          "workbench.action.focusFirstEditorGroup"
+        );
+      }
+    )
+  );
 }
 
 export function deactivate() {}

@@ -50,6 +50,10 @@
       {
         "command": "cursor-placement.open-then-focus",
         "title": "Open then focus"
+      },
+      {
+        "command": "cursor-placement.open-result-and-reset",
+        "title": "Open result and reset"
       }
     ]
   },
