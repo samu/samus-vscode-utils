@@ -252,6 +252,19 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("cursor-placement.open-then-focus", () => {
+      vscode.commands.executeCommand("filesExplorer.openFilePreserveFocus");
+      setTimeout(
+        () =>
+          vscode.commands.executeCommand(
+            "workbench.action.focusFirstEditorGroup"
+          ),
+        100
+      );
+    })
+  );
 }
 
 export function deactivate() {}

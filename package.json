@@ -46,6 +46,10 @@
       {
         "command": "cursor-placement.vim-escape-then-run",
         "title": "Vim escape then run"
+      },
+      {
+        "command": "cursor-placement.open-then-focus",
+        "title": "Open then focus"
       }
     ]
   },
