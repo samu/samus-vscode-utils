@@ -242,6 +242,16 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.vim-escape-then-run",
+      ({ command }: { command: string }) => {
+        vscode.commands.executeCommand("extension.vim_escape");
+        setTimeout(() => vscode.commands.executeCommand(command), 0);
+      }
+    )
+  );
 }
 
 export function deactivate() {}
