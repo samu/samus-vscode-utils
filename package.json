@@ -52,8 +52,12 @@
         "title": "Open then focus"
       },
       {
-        "command": "cursor-placement.open-result-and-reset",
+        "command": "cursor-placement.open-result-then-reset",
         "title": "Open result and reset"
+      },
+      {
+        "command": "cursor-placement.revert-change-then-hide",
+        "title": "Revert change then hide"
       }
     ]
   },

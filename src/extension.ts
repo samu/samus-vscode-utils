@@ -268,13 +268,23 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.open-result-and-reset",
+      "cursor-placement.open-result-then-reset",
       () => {
         vscode.commands.executeCommand("search.action.openResult");
         vscode.commands.executeCommand("workbench.view.explorer");
         vscode.commands.executeCommand(
           "workbench.action.focusFirstEditorGroup"
         );
+      }
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.revert-change-then-hide",
+      () => {
+        vscode.commands.executeCommand("git.revertSelectedRanges");
+        vscode.commands.executeCommand("extension.vim_escape");
       }
     )
   );
