@@ -7,36 +7,40 @@ function getIconUri(iconName: string): vscode.Uri {
   );
 }
 
-export function activate(context: vscode.ExtensionContext) {
-  const selectionDecorationType = vscode.window.createTextEditorDecorationType({
-    gutterIconPath: getIconUri("patch-exclamation"),
-    gutterIconSize: "66%",
-  });
+const selectionDecorationType = vscode.window.createTextEditorDecorationType({
+  gutterIconPath: getIconUri("patch-exclamation"),
+  gutterIconSize: "66%",
+});
 
+function setMultiSelectionDecorations(editor: vscode.TextEditor) {
+  const decorations =
+    editor.selections.length === 1
+      ? []
+      : editor.selections.map((selection) => ({
+          range: new vscode.Range(
+            selection.start,
+            new vscode.Position(
+              selection.end.line,
+              selection.start.character === selection.end.character
+                ? selection.end.character + 1
+                : selection.end.character
+            )
+          ),
+        }));
+
+  editor.setDecorations(selectionDecorationType, decorations);
+}
+
+export function activate(context: vscode.ExtensionContext) {
   vscode.window.onDidChangeTextEditorSelection(
-    (event) => {
+    () => {
       const editor = vscode.window.activeTextEditor;
 
       if (!editor) {
         return;
       }
 
-      const decorations =
-        event.selections.length === 1
-          ? []
-          : event.selections.map((selection) => ({
-              range: new vscode.Range(
-                selection.start,
-                new vscode.Position(
-                  selection.end.line,
-                  selection.start.character === selection.end.character
-                    ? selection.end.character + 1
-                    : selection.end.character
-                )
-              ),
-            }));
-
-      editor.setDecorations(selectionDecorationType, decorations);
+      setMultiSelectionDecorations(editor);
     },
     null,
     context.subscriptions
