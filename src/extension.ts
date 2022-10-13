@@ -1,8 +1,16 @@
+import * as path from "path";
 import * as vscode from "vscode";
+
+function getIconUri(iconName: string): vscode.Uri {
+  return vscode.Uri.file(
+    path.join(path.dirname(__dirname), "resources", "icons", `${iconName}.svg`)
+  );
+}
 
 export function activate(context: vscode.ExtensionContext) {
   const selectionDecorationType = vscode.window.createTextEditorDecorationType({
-    outline: "2px solid rgba(211, 54, 130, 0.5)",
+    gutterIconPath: getIconUri("patch-exclamation"),
+    gutterIconSize: "66%",
   });
 
   vscode.window.onDidChangeTextEditorSelection(
