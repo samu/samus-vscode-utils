@@ -275,6 +275,17 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.executeCommand(
           "workbench.action.focusFirstEditorGroup"
         );
+        vscode.commands.executeCommand("extension.vim_escape");
+      }
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.close-find-widget-then-reset",
+      () => {
+        vscode.commands.executeCommand("closeFindWidget");
+        vscode.commands.executeCommand("extension.vim_escape");
       }
     )
   );

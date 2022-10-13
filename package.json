@@ -56,6 +56,10 @@
         "title": "Open result and reset"
       },
       {
+        "command": "cursor-placement.close-find-widget-then-reset",
+        "title": "Close find widget then reset"
+      },
+      {
         "command": "cursor-placement.revert-change-then-hide",
         "title": "Revert change then hide"
       }
