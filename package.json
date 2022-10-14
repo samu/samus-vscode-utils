@@ -1,6 +1,6 @@
 {
-  "name": "cursor-placement",
-  "displayName": "cursor-placement",
+  "name": "samus-vscode-utils",
+  "displayName": "samus-vscode-utils",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -16,19 +16,19 @@
   "contributes": {
     "commands": [
       {
-        "command": "cursor-placement.pull-up",
+        "command": "samus-vscode-utils.pull-up",
         "title": "Pull cursor up"
       },
       {
-        "command": "cursor-placement.pull-down",
+        "command": "samus-vscode-utils.pull-down",
         "title": "Pull cursor down"
       },
       {
-        "command": "cursor-placement.move-selection-to-occurence",
+        "command": "samus-vscode-utils.move-selection-to-occurence",
         "title": "Move cursor"
       },
       {
-        "command": "cursor-placement.run-multiple",
+        "command": "samus-vscode-utils.run-multiple",
         "title": "Run multiple"
       }
     ]

@@ -1,3 +1,3 @@
-# cursor-placement
+# samus-vscode-utils
 
-A VSCode extension which helps with cursor placement.
+My vscode stuff. Unreleased.

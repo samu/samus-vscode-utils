@@ -48,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.pull-up",
+      "samus-vscode-utils.pull-up",
       ({ value }: { value: number }) => {
         const lineNumber = vscode.window.activeTextEditor?.selection.start.line;
 
@@ -66,7 +66,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.pull-down",
+      "samus-vscode-utils.pull-down",
       ({ value }: { value: number }) => {
         const lineNumber = vscode.window.activeTextEditor?.selection.end.line;
 
@@ -84,7 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.move-selection-to-occurence",
+      "samus-vscode-utils.move-selection-to-occurence",
       ({ value }: { value: number }) => {
         const editor = vscode.window.activeTextEditor;
 
@@ -153,7 +153,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.run-multiple",
+      "samus-vscode-utils.run-multiple",
       async ({ commands }: { commands: Array<Command> }) => {
         for (let i = 0; i < commands.length; i++) {
           const command = commands[i];
