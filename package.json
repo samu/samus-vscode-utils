@@ -24,14 +24,6 @@
         "title": "Pull cursor down"
       },
       {
-        "command": "cursor-placement.move-up-and-scroll",
-        "title": "Move up and scroll"
-      },
-      {
-        "command": "cursor-placement.move-down-and-scroll",
-        "title": "Move down and scroll"
-      },
-      {
         "command": "cursor-placement.move-selection-to-occurence",
         "title": "Move cursor"
       },

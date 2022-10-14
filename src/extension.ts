@@ -84,44 +84,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.move-down-and-scroll",
-      ({ value }: { value: number }) => {
-        vscode.commands.executeCommand("cursorMove", {
-          to: "down",
-          by: "line",
-          value,
-        });
-
-        vscode.commands.executeCommand("editorScroll", {
-          to: "down",
-          by: "line",
-          value,
-        });
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "cursor-placement.move-up-and-scroll",
-      ({ value }: { value: number }) => {
-        vscode.commands.executeCommand("cursorMove", {
-          to: "up",
-          by: "line",
-          value,
-        });
-
-        vscode.commands.executeCommand("editorScroll", {
-          to: "up",
-          by: "line",
-          value,
-        });
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
       "cursor-placement.move-selection-to-occurence",
       ({ value }: { value: number }) => {
         const editor = vscode.window.activeTextEditor;
