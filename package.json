@@ -16,10 +16,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "cursor-placement.smart-move",
-        "title": "Scroll to cursor"
-      },
-      {
         "command": "cursor-placement.pull-up",
         "title": "Pull cursor up"
       },
@@ -34,10 +30,6 @@
       {
         "command": "cursor-placement.move-down-and-scroll",
         "title": "Move down and scroll"
-      },
-      {
-        "command": "cursor-placement.escape-cursorMove",
-        "title": "Move cursor"
       },
       {
         "command": "cursor-placement.move-selection-to-occurence",
@@ -62,6 +54,10 @@
       {
         "command": "cursor-placement.revert-change-then-hide",
         "title": "Revert change then hide"
+      },
+      {
+        "command": "cursor-placement.run-multiple",
+        "title": "Run multiple"
       }
     ]
   },

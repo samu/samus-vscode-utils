@@ -245,6 +245,31 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "cursor-placement.run-multiple",
+      async ({ commands }: { commands: Array<Command> }) => {
+        for (let i = 0; i < commands.length; i++) {
+          const command = commands[i];
+
+          if (command.timeout !== undefined) {
+            await new Promise((resolve) =>
+              setTimeout(resolve, command.timeout)
+            );
+          }
+
+          vscode.commands.executeCommand(command.command, command.args);
+        }
+      }
+    )
+  );
 }
+
+type Command = {
+  command: string;
+  args: any;
+  timeout?: number;
+};
 
 export function deactivate() {}
