@@ -191,63 +191,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "cursor-placement.vim-escape-then-run",
-      ({ command }: { command: string }) => {
-        vscode.commands.executeCommand("extension.vim_escape");
-        setTimeout(() => vscode.commands.executeCommand(command), 0);
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand("cursor-placement.open-then-focus", () => {
-      vscode.commands.executeCommand("filesExplorer.openFilePreserveFocus");
-      setTimeout(
-        () =>
-          vscode.commands.executeCommand(
-            "workbench.action.focusFirstEditorGroup"
-          ),
-        100
-      );
-    })
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "cursor-placement.open-result-then-reset",
-      () => {
-        vscode.commands.executeCommand("search.action.openResult");
-        vscode.commands.executeCommand("workbench.view.explorer");
-        vscode.commands.executeCommand(
-          "workbench.action.focusFirstEditorGroup"
-        );
-        vscode.commands.executeCommand("extension.vim_escape");
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "cursor-placement.close-find-widget-then-reset",
-      () => {
-        vscode.commands.executeCommand("closeFindWidget");
-        vscode.commands.executeCommand("extension.vim_escape");
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "cursor-placement.revert-change-then-hide",
-      () => {
-        vscode.commands.executeCommand("git.revertSelectedRanges");
-        vscode.commands.executeCommand("extension.vim_escape");
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
       "cursor-placement.run-multiple",
       async ({ commands }: { commands: Array<Command> }) => {
         for (let i = 0; i < commands.length; i++) {
