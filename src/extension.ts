@@ -14,7 +14,7 @@ const selectionDecorationType = vscode.window.createTextEditorDecorationType({
 
 const nthLineDecorationType = vscode.window.createTextEditorDecorationType({
   gutterIconPath: getIconUri("arrow-right-short"),
-  gutterIconSize: "66%",
+  gutterIconSize: "100%",
 });
 
 const DROP_LINE_TARGET = 15;
@@ -97,20 +97,20 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions
   );
 
-  vscode.window.onDidChangeActiveTextEditor(
-    () => {
-      withEditor((editor) => {
-        setNthLineDecoration(editor, getDropLineTarget(editor));
-      });
-    },
-    null,
-    context.subscriptions
-  );
+  // vscode.window.onDidChangeActiveTextEditor(
+  //   () => {
+  //     withEditor((editor) => {
+  //       setNthLineDecoration(editor, getDropLineTarget(editor));
+  //     });
+  //   },
+  //   null,
+  //   context.subscriptions
+  // );
 
   vscode.window.onDidChangeTextEditorVisibleRanges(
     () => {
       withEditor((editor) => {
-        setNthLineDecoration(editor, getDropLineTarget(editor));
+        // setNthLineDecoration(editor, getDropLineTarget(editor));
         evaluateIsOnDropLine(editor);
       });
     },
