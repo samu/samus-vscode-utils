@@ -12,11 +12,6 @@ const selectionDecorationType = vscode.window.createTextEditorDecorationType({
   gutterIconSize: "66%",
 });
 
-const nthLineDecorationType = vscode.window.createTextEditorDecorationType({
-  gutterIconPath: getIconUri("arrow-right-short"),
-  gutterIconSize: "100%",
-});
-
 const DROP_LINE_TARGET = 15;
 
 function setMultiSelectionDecorations(editor: vscode.TextEditor) {
@@ -36,31 +31,6 @@ function setMultiSelectionDecorations(editor: vscode.TextEditor) {
         }));
 
   editor.setDecorations(selectionDecorationType, decorations);
-}
-
-function setNthLineDecoration(editor: vscode.TextEditor, line: number) {
-  const decorations = [
-    {
-      range: new vscode.Range(
-        new vscode.Position(line, 0),
-        new vscode.Position(line, 80)
-      ),
-    },
-    {
-      range: new vscode.Range(
-        new vscode.Position(line + 5, 0),
-        new vscode.Position(line + 5, 80)
-      ),
-    },
-    {
-      range: new vscode.Range(
-        new vscode.Position(line + 10, 0),
-        new vscode.Position(line + 10, 80)
-      ),
-    },
-  ];
-
-  editor.setDecorations(nthLineDecorationType, decorations);
 }
 
 function getDropLineTarget(editor: vscode.TextEditor) {
@@ -97,20 +67,9 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions
   );
 
-  // vscode.window.onDidChangeActiveTextEditor(
-  //   () => {
-  //     withEditor((editor) => {
-  //       setNthLineDecoration(editor, getDropLineTarget(editor));
-  //     });
-  //   },
-  //   null,
-  //   context.subscriptions
-  // );
-
   vscode.window.onDidChangeTextEditorVisibleRanges(
     () => {
       withEditor((editor) => {
-        // setNthLineDecoration(editor, getDropLineTarget(editor));
         evaluateIsOnDropLine(editor);
       });
     },
@@ -186,25 +145,6 @@ export function activate(context: vscode.ExtensionContext) {
         setTimeout(() => {
           vscode.commands.executeCommand("extension.vim_escape");
         }, 100);
-      }
-    )
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "samus-vscode-utils.run-multiple",
-      async ({ commands }: { commands: Array<Command> }) => {
-        for (let i = 0; i < commands.length; i++) {
-          const command = commands[i];
-
-          if (command.timeout !== undefined) {
-            await new Promise((resolve) =>
-              setTimeout(resolve, command.timeout)
-            );
-          }
-
-          vscode.commands.executeCommand(command.command, command.args);
-        }
       }
     )
   );

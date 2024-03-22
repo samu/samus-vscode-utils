@@ -26,10 +26,6 @@
       {
         "command": "samus-vscode-utils.move-selection-to-occurence",
         "title": "Move cursor"
-      },
-      {
-        "command": "samus-vscode-utils.run-multiple",
-        "title": "Run multiple"
       }
     ]
   },
