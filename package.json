@@ -22,10 +22,6 @@
       {
         "command": "samus-vscode-utils.pull-down",
         "title": "Pull cursor down"
-      },
-      {
-        "command": "samus-vscode-utils.move-selection-to-occurence",
-        "title": "Move cursor"
       }
     ]
   },

@@ -112,48 +112,6 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "samus-vscode-utils.move-selection-to-occurence",
-      ({ value }: { value: number }) => {
-        const editor = vscode.window.activeTextEditor;
-
-        if (!editor) {
-          return;
-        }
-
-        const [range] = editor.visibleRanges;
-
-        const targetLine = range.start.line + value;
-        const lineContent = editor.document.lineAt(
-          Math.min(targetLine, editor.document.lineCount - 1)
-        ).text;
-
-        const targetChar = Math.max(
-          0,
-          lineContent.split("").findIndex((char) => char !== " ")
-        );
-
-        editor.selection = new vscode.Selection(
-          targetLine,
-          targetChar,
-          targetLine,
-          targetChar
-        );
-
-        setTimeout(() => {
-          vscode.commands.executeCommand("extension.vim_escape");
-        }, 100);
-      }
-    )
-  );
 }
-
-type Command = {
-  command: string;
-  args: any;
-  timeout?: number;
-};
 
 export function deactivate() {}
